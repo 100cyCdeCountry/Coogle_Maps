@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<link rel="shortcut icon" href="https://github.com/100cyCdeCountry/Coogle_Maps/blob/master/img/icon.jpg?raw=true" /> 
+	<meta charset="utf-8">
+	<link rel="shortcut icon" href="https://100cycdecountry.github.io/Coogle_Maps/img/icon.jpg" /> 
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@100cyCdeCountry">
+    <meta name="twitter:title" content="CdeCoogle Maps">
+    <meta name="twitter:description" content="Visita los lugares de CdeCountry y sus habitantes">
+    <meta name="twitter:image" content="https://100cycdecountry.github.io/Coogle_Maps/img/Thumbnail.png">
     <title>Coogle Maps</title>
     <script src="Build/UnityLoader.js"></script>
     <script>
@@ -17,8 +22,37 @@
 			alert("Esta aplicación puede no funcionar correctamente en moviles o tabletas. Prueba a usarla en un ordenador");
 		}
 
-		//GG Unity
-		/*function UnityProgress(gameInstance, progress) {
+		const msg = ["Cargando...",
+		 "Cargando memes de CdeCrespo...",
+		 "Cargando memes de CrespAldo...",
+		 "Investigando la sensia 100tífica",
+		 "Cargando un montón de cosas después del 90%...",
+		 "Cargando datos top secret illuminati...",
+		 "Cargando supercanción de Wikiseba...",
+		 "Cargando foto de perfil de Usted Está Aquí...",
+		 "Generando mundo terraplanista...",
+		 "Probando D.O.N.G. aleatorios...",
+		 "Adorando a Crespo...",
+		 "Aspirando muy fuerte para empezar...",
+		 "Jugando al Fornite...",
+		 "Conectando con Moderdonia...",
+		 "Buscando el boson de Higgs...",
+		 "Jugando a Pokémon Go a lo pobre...",
+		 "Generando memes proceduralmente...",
+		 "Reviviendo dinosaurios...",
+		 "Destruyendo CdeCountry"
+		];		
+		
+		var msgInterval;
+
+		function Random(max, min) {
+			if(min == undefined)
+				min = 0;
+			
+			return Math.random() * (max - min) + min;
+		}
+
+		function UnityProgress(gameInstance, progress) {
 			if (!gameInstance.Module) {
 				return;
 			}
@@ -29,57 +63,108 @@
 			}
 			if (!gameInstance.progress) {    
 				gameInstance.progress = document.createElement("div");
-				gameInstance.progress.percentage = document.createElement("div");
-				gameInstance.progress.percentage.className = "percentage";
-				gameInstance.progress.appendChild(gameInstance.progress.percentage);
-				gameInstance.progress.advice = document.createElement("div");
-				gameInstance.progress.advice.className = "advice";
-				gameInstance.progress.appendChild(gameInstance.progress.advice);
+				gameInstance.progress.className = "progress " + gameInstance.Module.splashScreenStyle;
+				gameInstance.progress.empty = document.createElement("div");
+				gameInstance.progress.empty.className = "empty";
+				gameInstance.progress.appendChild(gameInstance.progress.empty);
+				gameInstance.progress.full = document.createElement("div");
+				gameInstance.progress.full.className = "full";
+				gameInstance.progress.appendChild(gameInstance.progress.full);
 				gameInstance.container.appendChild(gameInstance.progress);
+
+				gameInstance.info = document.createElement("div");
+				gameInstance.info.className = "info " + gameInstance.Module.splashScreenStyle;
+				gameInstance.container.appendChild(gameInstance.info);
+
+				gameInstance.info.percentage = document.createElement("div");
+				gameInstance.info.percentage.className = "percentage";
+				gameInstance.info.appendChild(gameInstance.info.percentage);
+				gameInstance.info.message = document.createElement("div");
+				gameInstance.info.message.className = "message";
+				gameInstance.info.appendChild(gameInstance.info.message);
+
+				gameInstance.info.message.innerHTML = msg[0];
+				msgInterval = setInterval(function(){
+					gameInstance.info.message.innerHTML = 
+						"<small>Es normal que se pare al 90%</small><br />" +
+						msg[Math.floor(Random(msg.length))];
+				}, Random(1000, 100));
 			}
-			gameInstance.progress.percentage.innerHTML = progress + "%";
-			if (progress == 1)
-				gameInstance.logo.style.display = gameInstance.progress.style.display = "none";
+			gameInstance.info.percentage.innerHTML = progress * 100 + "%";
+			gameInstance.progress.full.style.width = (100 * progress) + "%";
+  			gameInstance.progress.empty.style.width = (100 * (1 - progress)) + "%";
+			if (progress == 1) {
+				clearInterval(msgInterval);
+				gameInstance.logo.style.display = gameInstance.progress.style.display = gameInstance.info.style.display = "none";
+			}
 		}
+		var gameInstance = UnityLoader.instantiate("gameContainer", "Build/Beta.json",  {onProgress: UnityProgress});
 
-		var gameInstance = UnityLoader.instantiate("gameContainer", "Build/build7.json",  {onProgress: UnityProgress});*/
-
-		var gameInstance = UnityLoader.instantiate("gameContainer", "Build/build7.json");
     </script>
 	<style>
-	.logo{
-		/*width: 100%;
-		height: 20em;
-		display: block;
-		position: absolute;
-		top: 10%;
-		background-size: 20em auto  !important;*/
-		background: url('https://github.com/100cyCdeCountry/Coogle_Maps/blob/master/img/logo.png?raw=true') no-repeat center !important;
-	}
-	/*.progress{
-		width: 100%;
-		height: 20em;
-		display: block;
-		position: absolute;
-		bottom: 30%;
-		background: blue;
-		color: red;
-	}*/
-	body{
-		padding: 0;
-		margin: 0;
-		overflow: hidden;
-		background-color: #444444;
-	}
+		.logo{
+			width: 100%;
+			height: 20em;
+			display: block;
+			position: absolute;
+			top: 0%;
+			background: url('https://100cycdecountry.github.io/Coogle_Maps/img/logo.png') no-repeat center !important;
+			background-size: 40%  !important;
+			background-position: center;
+			margin-top: 0;
+		}
 
-	#gameContainer{
-		width: 100%; 
-		height: 99.9vh;
-		margin: auto;
-	}
-	</style>
-  </head>
-  <body>
-    <div id="gameContainer"></div>
+		.progress{
+			position: absolute;
+			bottom: 8px;
+			height: 6px;
+			display: block;
+			background: gray;
+			margin-right: 2%;
+			margin-left: 2%;
+			width: 96%;
+		}
+		.empty{
+			display: none;
+		}
+		.full{
+			margin: 0 !important;
+			position: relative;
+			height: 6px;
+			float: left;
+			background: deepskyblue;
+			width: 10%;
+		}
+		.info{
+			color: darkslategray;
+			text-align: center;
+			position: absolute;
+			top: 60%;
+			height: 100%;
+			width: 100%;
+			font-size: 2em;
+		}
+		.message{
+			color: darkgray;
+			font-size: 0.75em;
+		}
+		body{
+			padding: 0;
+			margin: 0;
+			overflow: hidden;
+			background-color: #444444;
+		}
+	
+		#gameContainer{
+			width: 100%; 
+			height: 99.9vh;
+			margin: auto;
+			font-family: Verdana, Geneva, Tahoma, sans-serif;
+		}
+		</style>
+	  </head>
+	  <body>
+		<div id="gameContainer">
+		</div>
   </body>
 </html>
