@@ -90,7 +90,7 @@
 						msg[Math.floor(Random(msg.length))];
 				}, Random(1000, 100));
 			}
-			gameInstance.info.percentage.innerHTML = progress * 100 + "%";
+			gameInstance.info.percentage.innerHTML = (progress * 100).toFixed(2) + "%";
 			gameInstance.progress.full.style.width = (100 * progress) + "%";
   			gameInstance.progress.empty.style.width = (100 * (1 - progress)) + "%";
 			if (progress == 1) {
@@ -98,7 +98,14 @@
 				gameInstance.logo.style.display = gameInstance.progress.style.display = gameInstance.info.style.display = "none";
 			}
 		}
-		var gameInstance = UnityLoader.instantiate("gameContainer", "Build/Beta0.2.json",  {onProgress: UnityProgress});
+		var gameInstance = UnityLoader.instantiate("gameContainer", "Build/Beta0.3b.json",  {onProgress: UnityProgress});
+
+		window.addEventListener("resize", bucleSize);
+		function bucleSize(){
+			document.getElementById("#canvas").width = document.getElementById("gameContainer").clientWidth;
+			document.getElementById("#canvas").height = document.getElementById("gameContainer").clientHeight;
+		}
+
 
     </script>
 	<style>
