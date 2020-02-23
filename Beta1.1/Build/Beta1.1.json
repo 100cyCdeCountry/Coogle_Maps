@@ -1,0 +1,18 @@
+{
+"companyName": "100cyCdeCountry",
+"productName": "CoogleMaps",
+"productVersion": "0.1",
+"dataUrl": "Beta1.1.data.unityweb",
+"asmCodeUrl": "Beta1.1.asm.code.unityweb",
+"asmMemoryUrl": "Beta1.1.asm.memory.unityweb",
+"asmFrameworkUrl": "Beta1.1.asm.framework.unityweb",
+"TOTAL_MEMORY": 335544320,
+"graphicsAPI": ["WebGL 2.0","WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Light",
+"backgroundColor": "#FFFFFF",
+"cacheControl": {"default": "must-revalidate"},
+"developmentBuild": false,
+"multithreading": false,
+"unityVersion": "2019.3.0f6"
+}
